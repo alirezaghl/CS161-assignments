@@ -1,16 +1,16 @@
 ## 1.1
 
 State and prove a tight bound for the recurrence relation:
-$$
+
 T(n) = 5T\left(\frac{n}{3}\right) + n^2
-$$
+
 
 ---
 
 ### Assumption
-$$
+
 T(n) = O(n^2)
-$$
+
 
 for some constant \( C > 0 \).
 
@@ -20,66 +20,66 @@ We proceed by substitution.
 
 ### Substitution 
 Substitute the recurrence relation under the assumption:
-$$
+
 T(n) = 5T\left(\frac{n}{3}\right) + n^2
-$$
+
 Based on the assumption:
-$$
+
 T\left(\frac{n}{3}\right) \leq C\left(\frac{n}{3}\right)^2
-$$
+
 Substitute this into the original relation:
-$$
+
 T(n) \leq 5C\left(\frac{n}{3}\right)^2 + n^2
-$$
+
 
 ---
 
 ### Simplify the Expression
 Simplify the first term:
-$$
+
 5C\left(\frac{n}{3}\right)^2 = 5C\frac{n^2}{9}
-$$
+
 Thus:
-$$
+
 T(n) \leq \frac{5C}{9}n^2 + n^2
-$$
 
 
-$$
+
+
 T(n) \leq n^2\left(\frac{5C}{9} + 1\right)
-$$
+
 
 ---
 
 ### Bound \( C \)
-$$
+
 \frac{5C}{9} + 1 \leq C
-$$
-$$
+
+
 1 \leq C - \frac{5C}{9}
-$$
-$$
+
+
 1 \leq \frac{4C}{9}
-$$
-$$
+
+
 C \geq \frac{9}{4}
-$$
+
 
 ---
 
 ### Conclusion
 
-$$
+
 T(n) = O(n^2)
-$$
+
 
 ---
 
 ### Final Tight Bound
 The tight bound for the given recurrence relation is:
-$$
+
 T(n) = \Theta(n^2)
-$$
+
 
 
 ## 1.2
@@ -87,138 +87,138 @@ $$
 ### Subproblem Size and Tree Structure
 
 The subproblem size for a node at depth \( i \) is:
-$$
+
 \frac{n}{5^i}.
-$$
+
 
 The tree has \( \log_5 n + 1 \) levels, and the total number of leaves is:
-$$
+
 3^{\log_2 n} = n^{\log_2 3}.
-$$
+
 
 ---
 
 ### Total Cost at Each Level
 
 The total cost for all nodes at level \( i \), where \( i = 0, \dots, \log_5 n - 1 \), is:
-$$
+
 3^i \left( \frac{n}{5^i} \right) = \left( \frac{3}{5} \right)^i n.
-$$
+
 
 ---
 
 ### Total Cost of the Recursion Tree
 
 The total cost \( T(n) \) is the sum of all levels plus the work at the leaves:
-$$
+
 T(n) = n + \frac{3}{5}n + \left( \frac{3}{5} \right)^2 n + \dots + \left( \frac{3}{5} \right)^{\log_2 n - 1} n + \Theta\left( n^{\log_2 3} \right).
-$$
+
 
 This can be expressed as a summation:
-$$
+
 T(n) = \sum_{i=0}^{\log_2 n - 1} \left( \frac{3}{5} \right)^i n + \Theta\left( n^{\log_2 3} \right).
-$$
+
 
 ---
 
 ### Infinite Series Bound
 
 The total cost for all nodes at level \( i \) is:
-$$
+
 \text{Cost} = \sum_{i=0}^{\log_5 n - 1} \left( \frac{3}{5} \right)^i n.
-$$
+
 
 To bound this summation, we consider an infinite geometric series:
-$$
+
 \sum_{i=0}^{\infty} r^i = \frac{1}{1 - r} \quad \text{for } |r| < 1.
-$$
+
 
 Here, \( r = \frac{3}{5} \). Thus:
-$$
+
 \sum_{i=0}^{\infty} \left( \frac{3}{5} \right)^i = \frac{1}{1 - \frac{3}{5}} = \frac{1}{\frac{2}{5}} = \frac{5}{2}.
-$$
+
 
 Since the summation for a finite series  is smaller than this bound:
-$$
+
 \sum_{i=0}^{\log_5 n - 1} \left( \frac{3}{5} \right)^i \leq \frac{5}{2}.
-$$
+
 
 ---
 
 ### Total Cost Bound
 
 Substitute back into the total cost:
-$$
+
 T(n) \leq n \cdot \sum_{i=0}^{\log_5 n - 1} \left( \frac{3}{5} \right)^i + \Theta\left( n^{\log_2 3} \right).
-$$
+
 
 Using the infinite series bound:
-$$
+
 \sum_{i=0}^{\log_5 n - 1} \left( \frac{3}{5} \right)^i \leq \frac{5}{2}.
-$$
+
 
 Thus:
-$$
+
 T(n) \leq n \cdot \frac{5}{2} + \Theta\left( n^{\log_2 3} \right).
-$$
+
 
 the final bound is:
-$$
+
 T(n) = \Theta\left( n^{\log_2 3} \right).
-$$
+
 
 ## 2
 
 
 ### The recurrence relation is:
 
-$$
+
 T(n) = T\left(\frac{n}{4}\right) + T\left(\frac{3n}{4}\right) + cn
-$$
+
 
 ---
 
 ### Using substitution method
 
 
-$$
+
 T(n) \leq c \left( \frac{n}{4} \log \frac{n}{4} \right) + c \left( \frac{3n}{4} \log \frac{3n}{4} \right) + cn
-$$
+
 
 ---
 
 ### Simplify the logarithmic terms
 
-$$
+
 \log \frac{n}{4} = \log n - \log 4, \quad \log \frac{3n}{4} = \log n + \log 3 - \log 4
-$$
+
 
 Substitute these into the recurrence:
 
-$$
+
 T(n) \leq c \left[ \frac{n}{4} (\log n - \log 4) \right] + c \left[ \frac{3n}{4} (\log n + \log 3 - \log 4) \right] + cn
-$$
+
 
 ---
 
 ### Combine the terms
 
 
-$$
+
 T(n) \leq c \left[ \frac{n}{4} \log n - \frac{n}{4} \log 4 + \frac{3n}{4} \log n + \frac{3n}{4} \log 3 - \frac{3n}{4} \log 4 \right] + cn
-$$
 
 
 
-$$
+
+
 \frac{n}{4} + \frac{3n}{4} = n
-$$
+
 
 Thus:
 
-$$
+
 T(n) \leq c \left[ n \log n - n \left( \frac{\log 4}{4} + \frac{3 \log 4}{4} \right) + \frac{3n}{4} \log 3 \right] + cn
-$$
+
 
 ---
 
@@ -226,9 +226,9 @@ $$
 
 As n grows to infinity:
 
-$$
+
 T(n) \leq cn \log n + \text{lower order terms}.
-$$
+
 
 ---
 
@@ -236,9 +236,9 @@ $$
 
 The solution to the recurrence is:
 
-$$
+
 T(n) = O(n \log n).
-$$
+
 
 
 ## 3
@@ -252,9 +252,9 @@ But the algorithm performs 4 recursive calls at each level, not a constant O(n) 
 
 The recurrence relation for the algorithm is:
 
-$$
+
 T(n) = 4T\left(\frac{n}{2}\right) + O(n).
-$$
+
 
 ---
 
@@ -265,26 +265,26 @@ $$
 
 Using the Master Theorem:
 
-$$
+
 T(n) = aT\left(\frac{n}{b}\right) + f(n),
-$$
 
 
 
 
-$$
+
+
 a = 4 \quad \text{and} \quad b^d = 2^1 = 2.
-$$
 
 
-$$
+
+
 T(n) = O\left(n^{\log_b a}\right) = O\left(n^{\log_2 4}\right).
-$$
 
 
-$$
+
+
 T(n) = O(n^2).
-$$
+
 
 ## 4.1
 
@@ -441,42 +441,42 @@ Given \( n \) applicants with strictly more than \( n/2 \) experienced:
 ## 5.6
 
  The recurrence relation is:
-$$
-T(n) = T\left(\frac{n}{2}\right) + O(n)
-$$
-Base Case:
-$$
-T(1) = 1
-$$
-By inductive hypothesis and substitution method:
-$$
-T(n) \leq c \cdot n
-$$
-$$
-T(n) \leq T\left(\frac{n}{2}\right) + c’ \cdot n
-$$
-$$
-T\left(\frac{n}{2}\right) \leq c \cdot \frac{n}{2}.
-$$
-$$
-T(n) \leq c \cdot \frac{n}{2} + c’ \cdot n.
-$$
-$$
-T(n) \leq \left(\frac{c}{2} + c’\right) \cdot n.
-$$
-$$
-\frac{c}{2} + c’ \leq c.
-$$
-$$
-c’ \leq \frac{c}{2}.
-$$
-$$
-c \geq 2 \cdot c’.
-$$
 
-$$
+T(n) = T\left(\frac{n}{2}\right) + O(n)
+
+Base Case:
+
+T(1) = 1
+
+By inductive hypothesis and substitution method:
+
+T(n) \leq c \cdot n
+
+
+T(n) \leq T\left(\frac{n}{2}\right) + c’ \cdot n
+
+
+T\left(\frac{n}{2}\right) \leq c \cdot \frac{n}{2}.
+
+
+T(n) \leq c \cdot \frac{n}{2} + c’ \cdot n.
+
+
+T(n) \leq \left(\frac{c}{2} + c’\right) \cdot n.
+
+
+\frac{c}{2} + c’ \leq c.
+
+
+c’ \leq \frac{c}{2}.
+
+
+c \geq 2 \cdot c’.
+
+
+
 T(n) = O(n).
-$$
+
 
 
 ## 5.7
